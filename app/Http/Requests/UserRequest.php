@@ -29,15 +29,16 @@ class UserRequest extends FormRequest
             'name'         => 'required|between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . Auth::id(),
             'email'        => 'required|email',
             'introduction' => 'max:80',
+            'avatar'       => 'mimes:jpeg,bmp,png,gif|dimensions:min_width=50,min_height=50',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.unique' => '用户名已被占用，请重新填写',
-            'name.regex' => '用户名只支持中英文、数字、横杆和下划线。',
-            'name.between' => '用户名必须介于 3 - 25 个字符之间。',
+            'name.unique'   => '用户名已被占用，请重新填写',
+            'name.regex'    => '用户名只支持中英文、数字、横杆和下划线。',
+            'name.between'  => '用户名必须介于 3 - 25 个字符之间。',
             'name.required' => '用户名不能为空。',
         ];
     }
