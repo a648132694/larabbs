@@ -9,6 +9,11 @@ use App\Http\Requests\UserRequest;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show']]);
+    }
+
     //
     public function show(User $user)
     {
@@ -17,15 +22,16 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
     public function update(UserRequest $request, ImageUploadHandler $handler, User $user)
     {
-//        dd($request->avatar);
+        $this->authorize('update', $user);
         $data = $request->all();
         if ($request->avatar) {
-            $result = $handler->save($request->avatar,'avatar',$user->id,362);
+            $result = $handler->save($request->avatar, 'avatar', $user->id, 362);
             if ($result) {
                 $data['avatar'] = $result['path'];
             }
