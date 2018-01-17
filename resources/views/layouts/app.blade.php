@@ -8,7 +8,7 @@
 
     <meta name="csrf-token" content="{{csrf_token()}}">
     <title>@yield('title','LaraBBS') - Laravel进阶教程</title>
-    <meta name="description" content="@yield('description', 'LaraBBS 爱好者社区')" />
+    <meta name="description" content="@yield('description', 'LaraBBS 爱好者社区')"/>
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     @yield('styles')
 </head>
@@ -23,6 +23,10 @@
 
     @include('layouts._footer')
 </div>
+
+@if (app()->isLocal())
+    @include('sudosu::user-selector')
+@endif
 
 <script src="{{asset('js/app.js')}}"></script>
 @yield('scripts')
