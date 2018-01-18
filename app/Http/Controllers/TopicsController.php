@@ -27,7 +27,7 @@ class TopicsController extends Controller
 
     public function show(Request $request, Topic $topic)
     {
-        if (!empty($topic->slug) && $topic->slug != $request->slug) {
+        if (!empty($topic->slug) && $topic->slug !== $request->slug) {
             return redirect($topic->link(), 301);
         }
 
@@ -90,7 +90,7 @@ class TopicsController extends Controller
             // 图片保存成功的话
             if ($result) {
                 $data['file_path'] = $result['path'];
-                $data['msg'] = "上传成功!";
+                $data['msg'] = '上传成功!';
                 $data['success'] = true;
             }
         }
