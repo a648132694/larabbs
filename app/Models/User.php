@@ -37,6 +37,8 @@ class User extends Authenticatable
         'introduction',
         'avatar',
         'phone',
+        'weixin_openid',
+        'weixin_unionid',
     ];
 
     /**
