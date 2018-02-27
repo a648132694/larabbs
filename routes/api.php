@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
-    'namespace' => 'App\Http\Controllers\Api',
+    'namespace'  => 'App\Http\Controllers\Api',
     'middleware' => 'serializer:array',
 ], function ($api) {
     $api->group([
@@ -60,6 +60,12 @@ $api->version('v1', [
             // 当前登录用户信息
             $api->get('user', 'UsersController@me')
                 ->name('api.user.show');
+            //编辑用户信息
+            $api->patch('user', 'UsersController@update')
+                ->name('api.user.update');
+
+            $api->post('images', 'ImagesController@store')
+                ->name('api.images.store');
         });
     });
 });
