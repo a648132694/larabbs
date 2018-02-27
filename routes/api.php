@@ -68,4 +68,6 @@ $api->version('v1', [
                 ->name('api.images.store');
         });
     });
+    $api->get('categories', 'CategoriesController@index')
+        ->name('api.categories.index');
 });
