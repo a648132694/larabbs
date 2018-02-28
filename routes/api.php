@@ -60,7 +60,7 @@ $api->version('v1', [
         $api->get('topics', 'TopicsController@index')
             ->name('api.topics.index');
         //话题详情
-        $api->get('topics/{topic}','TopicsController@show')
+        $api->get('topics/{topic}', 'TopicsController@show')
             ->name('api.topics.show');
         //个人话题列表
         $api->get('users/{user}/topics', 'TopicsController@userIndex')
@@ -85,6 +85,9 @@ $api->version('v1', [
             //删除话题
             $api->delete('topics/{topic}', 'TopicsController@destroy')
                 ->name('api.topics.destroy');
+            //发表回复
+            $api->post('topics/{topic}/replies', 'RepliesController@store')
+                ->name('api.topics.relies.store');
         });
     });
 });
